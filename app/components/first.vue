@@ -1,0 +1,72 @@
+<template>
+  <div>
+      <h1>我是组件</h1>
+      <ul>
+          <li v-for="(item, index) in arr">{{item}}--{{index}}</li>
+          <li v-for="(v, k) in obj">{{v}}--{{k}}</li>
+      </ul>
+      <div>
+          <span>{{childrens}}</span>
+      </div>
+      <div ref="box">你好啊</div>
+      <button v-on:click="changeBox">changeBox</button>
+      <input @input="change($event)">
+      <button v-on:click="changea">@wo</button>
+  </div>
+</template>
+<script>
+export default {
+    props: {  
+        childrens: ""  
+    },
+    beforeCreate() {
+        console.log('beforeCreate');
+    },
+    created() {
+        console.log('created');
+    },
+    mounted() {
+        console.log('mounted');
+    },
+    beforeMount() {
+        console.log('beforeMounte');
+    },
+    data() {
+        return {
+            arr: ['黑板', '白板', '粉笔', '水笔'],
+            obj: {
+                name: '小小',
+                age: '18',
+                sex: '保密',
+                nation: '汉族'
+            }
+        }
+    },
+    methods: {
+        change: function(e) {
+            this.childrens.age = 1000;
+            this.childrens.name = e.target.value;
+        },
+        changea: function() {
+            this.childrens.age = 1000;
+            this.$emit('changea', 100);
+        },
+        changeBox() {
+            // console.log(this.$refs.box.style);
+            this.$refs.box.style.background = 'red';
+        }
+    },
+    computed: {  
+        age: function () {  
+            return this.childrens.age + 10;  
+        },  
+        name: function () {
+            return this.childrens.name + "haha";  
+        }  
+    },   
+}
+</script>
+
+<style>
+
+</style>
