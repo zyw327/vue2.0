@@ -8,17 +8,24 @@
       <div>
           <span>{{childrens}}</span>
       </div>
+      <div v-yangse:hong.color="blue">ccc{{children}}</div>
       <div ref="box">你好啊</div>
       <button v-on:click="changeBox">changeBox</button>
       <input @input="change($event)">
       <button v-on:click="changea">@wo</button>
+      <div>
+          {{count}}
+          <p>
+              <button @click="addHander">+</button>
+              <button @click="minusHander">-</button>
+          </p>
+      </div>
   </div>
 </template>
 <script>
+
 export default {
-    props: {  
-        childrens: ""  
-    },
+    props: ['childrens'],
     beforeCreate() {
         console.log('beforeCreate');
     },
@@ -54,16 +61,39 @@ export default {
         changeBox() {
             // console.log(this.$refs.box.style);
             this.$refs.box.style.background = 'red';
+        },
+        blue(args) {
+            console.log(args);
+            console.log(2222);
+            return 'blue';
+        },
+        addHander() {
+            this.$store.commit('add');
+        },
+        minusHander() {
+            this.$store.commit('minus');
         }
     },
     computed: {  
-        age: function () {  
+        children: function () {  
             return this.childrens.age + 10;  
         },  
         name: function () {
             return this.childrens.name + "haha";  
+        },
+        count() {
+            return this.$store.state.count;
         }  
-    },   
+    },
+    directives: {
+        yangse(el, bingding) {
+            el.style.background = bingding.value();
+            if (bingding.modifiers.color) {
+                // el.style.background = 'yellow';
+            }
+            console.log(bingding);
+        }
+    }
 }
 </script>
 

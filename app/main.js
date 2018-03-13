@@ -1,6 +1,8 @@
 import Vue from "vue";
 import First from './components/first.vue'
 
+import store from './store'
+
 new Vue({
     el: "#app",
     data: {
@@ -12,6 +14,7 @@ new Vue({
             sex: "男"  
         } 
     },
+    store,
     components: {
         First
     },
@@ -22,6 +25,11 @@ new Vue({
         changea(num) {
             console.log(num);
             this.a += num;
+        }
+    },   
+    directives: {
+        hong(el) {
+            el.style.background = 'red'
         }
     }
 });
