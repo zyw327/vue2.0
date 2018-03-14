@@ -19,6 +19,7 @@
               <button @click="addHander">+</button>
               <button @click="minusHander">-</button>
           </p>
+          {{man}}
       </div>
   </div>
 </template>
@@ -68,7 +69,8 @@ export default {
             return 'blue';
         },
         addHander() {
-            this.$store.commit('add');
+            this.$store.dispatch('add', 100);
+            // this.$store.commit('add');
         },
         minusHander() {
             this.$store.commit('minus');
@@ -83,6 +85,9 @@ export default {
         },
         count() {
             return this.$store.state.count;
+        },
+        man() {
+            return this.$store.getters.man;
         }  
     },
     directives: {
