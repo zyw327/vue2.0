@@ -24,7 +24,8 @@ const store = new Vuex.Store({
     mutations: {
         // 没有所谓的大写字母的type了，就是一个一个函数
         add (state, payload) {
-            console.log(payload);
+            payload = payload - 0;
+            console.log("payload", payload);
             state.count ++;
             state.count += payload;
         },
