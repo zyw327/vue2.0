@@ -31,6 +31,12 @@ export default {
         console.log('beforeCreate');
     },
     created() {
+		// if (!this.childrens) {
+		// 	this.childrens = {
+		// 		age: 1,
+		// 		name: ""
+		// 	};
+		// }
         console.log('created');
     },
     mounted() {
@@ -39,6 +45,9 @@ export default {
     beforeMount() {
         console.log('beforeMounte');
     },
+	beforeUpdate() {
+		console.log("生命周期beforeUpdate")
+	},
     data() {
         return {
             arr: ['黑板', '白板', '粉笔', '水笔'],
